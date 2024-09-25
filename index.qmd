@@ -1,0 +1,348 @@
+---
+title: "IEEE CNS CRW 2024"
+subtitle: A Resilient RAP Solution Using Market-based Multi-Agent Systems
+author:
+    - name: Li Bai
+      orcid: 0000-0002-6036-5947
+      email: lbai@temple.edu
+      affiliations: Temple University
+    - name: Anway Bose
+      orcid: 0000-0002-7145-6203
+      email: anway.bose@temple.edu
+      affiliations: Temple University
+    - name: Zhuo Li
+      #orcid: 0009-0005-8914-3677
+      email: zhuo.li@angstrom-e.com
+      affiliations: Angstrom Excellence Technology Co. Ltd
+
+date: "2024-10-01"
+date-format: long
+format:
+  clean-revealjs:
+    theme: test.scss
+    logo: images/temple.png
+#    css: logo.css
+    chalkboard: true
+    slide-number: true
+    footer: Computer Fusion Laboratory
+    preview-links: auto
+    pointer:
+      color: "#e7298a"
+      pointerSize: 24
+revealjs-plugins:
+  - pointer
+filters: 
+  - reveal-auto-agenda
+auto-agenda:
+#   bullets: bullet
+  heading: "Contents:"
+---
+
+# Background
+
+## The RAP Problem
+
+![Fig 1: A series-parallel system configuration ](./images/serial_parallel_system_configuration.jpg){width=100% fig-align="center"}
+
+## Application
+
+![](./images/serial_parallel_system_configuration.jpg){width=100% fig-align="center"}
+
+::: {.callout-note title="RAP Applications"}
+
+-  Circuit design
+
+- Power plant components replacement
+
+- Consumer electronics industry
+
+:::
+
+# Problem Formulation
+## Mathamtical Formulation
+### Reliability {auto-animate="true"}
+![](./images/serial_parallel_system_configuration.jpg){width=70% fig-align="center"}
+
+::: {.callout-note title="Subsystem Reliability"}
+$R_i(\mathcal{X}_i) = 1 - \prod_{j=1}^{m_i}(1 - {\boldsymbol r}_{ij})^{x_{ij}}$
+:::
+
+## Reliability {auto-animate="true"}
+![](./images/serial_parallel_system_configuration.jpg){width=60% fig-align="center"}
+
+::: {.callout-note title="Subsystem Reliability"}
+$R_i(\mathcal{X}_i) = 1 - \prod_{j=1}^{m_i}(1 - {\boldsymbol r}_{ij})^{x_{ij}}$
+:::
+
+::: {.callout-note title="overall system reliability"}
+$R = \prod_{i=1}^{s} R_i(\mathcal{X}_i) = \prod_{i=1}^{s}\left(1 - \prod_{j=1}^{m_i}(1 - \boldsymbol{r}_{ij})^{x_{ij}}\right)$
+:::
+
+
+## Maximize System Reliability {auto-animate="true"}
+
+![](./images/serial_parallel_system_configuration.jpg){width=60% fig-align="center"}
+
+::: {.callout-note title="RAP Problem"}
+$\arg \max_{\mathcal{X}}\left\{ \prod_{i=1}^{s}\left(1 - \prod_{j=1}^{m_i}(1 - \boldsymbol{r}_{ij})^{x_{ij}}\right) \right\}$
+
+such that
+
+$\sum_{i=1}^{s}\sum_{j=1}^{m_i} \boldsymbol{c}_{ij}x_{ij} \leq C, \quad x_{ij} \in \mathbb{Z}^+$ and
+
+$\sum_{i=1}^{s}\sum_{j=1}^{m_i} \boldsymbol{w}_{ij}x_{ij} \leq W, \quad x_{ij} \in \mathbb{Z}^+$
+:::
+
+
+## Problem Ananlysis {auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+
+::: {.callout-note title="RAP Problem"}
+$\arg \max_{\mathcal{X}}\left\{ \prod_{i=1}^{s}\left(1 - \prod_{j=1}^{m_i}(1 - \boldsymbol{r}_{ij})^{x_{ij}}\right) \right\}$
+
+such that
+
+$\sum_{i=1}^{s}\sum_{j=1}^{m_i} \boldsymbol{c}_{ij}x_{ij} \leq C, \quad x_{ij} \in \mathbb{Z}^+$ and
+
+$\sum_{i=1}^{s}\sum_{j=1}^{m_i} \boldsymbol{w}_{ij}x_{ij} \leq W, \quad x_{ij} \in \mathbb{Z}^+$
+:::
+:::
+
+
+::: {.column width="50%"}
+![](./images/rap_contour.png){width=100% fig-align="center"}
+:::
+:::
+
+::: {.callout-note title="Difficulties in finding exact solution"}
+- Non Linear Objective
+- Problem is N-P hard
+- Search space for RAP is immense (e.g., Test Problem 1 has a
+search space on the order of $7.6 \times 10^{33}$)
+- Traversal algorithms are infeasible and impractical
+:::
+
+# Related Works
+## Related Works
+::: {.callout-note title="Exact algorithms "}
+- Nonlinear Integer Programming
+
+- Dynamic programming
+:::
+
+::: {.callout-note title="Heuristic methods"}
+- GA (genetic algorithm)
+
+- TS (Tabu search)
+
+- ACO (ant colony optimization)
+
+- VNS (variable neighborhood search algorithm) 
+:::
+
+## Related Works
+::: {.callout-note title="Multi-Objective Genetic Algorithm Approach "}
+
+$$\arg \max \prod_{i=1}^{s} R_i(\mathcal{X}_i) = \left\{\arg \max_{\mathcal{X}_1} R_1(\mathcal{X}_1), \ \arg \max_{\mathcal{X}_2} R_2(\mathcal{X}_2), \ \cdots, \ \arg \max_{\mathcal{X}_s} R_s(\mathcal{X}_s)\right\}$$
+
+:::
+
+## Related Works
+::: {.callout-note title="Multi-Objective Genetic Algorithm Approach "}
+
+$$\arg \max \prod_{i=1}^{s} R_i(\mathcal{X}_i) = \left\{\arg \max_{\mathcal{X}_1} R_1(\mathcal{X}_1), \ \arg \max_{\mathcal{X}_2} R_2(\mathcal{X}_2), \ \cdots, \ \arg \max_{\mathcal{X}_s} R_s(\mathcal{X}_s)\right\}$$
+
+$$ = \left\{\arg \min_{\mathcal{X}_1} \prod_{j=1}^{m_1} (1 - \boldsymbol{r}_{1j})^{x_{1j}}, \ \cdots, \ \arg \min_{\mathcal{X}_s} \prod_{j=1}^{m_s} (1 - \boldsymbol{r}_{sj})^{x_{sj}}\right\}$$
+
+:::
+
+## Related Works
+::: {.callout-note title="Multi-Objective Genetic Algorithm Approach "}
+
+$$\arg \max \prod_{i=1}^{s} R_i(\mathcal{X}_i) = \left\{\arg \max_{\mathcal{X}_1} R_1(\mathcal{X}_1), \ \arg \max_{\mathcal{X}_2} R_2(\mathcal{X}_2), \ \cdots, \ \arg \max_{\mathcal{X}_s} R_s(\mathcal{X}_s)\right\}$$
+
+$$= \left\{\arg \min_{\mathcal{X}_1} \prod_{j=1}^{m_1} (1 - \boldsymbol{r}_{1j})^{x_{1j}}, \ \cdots, \ \arg \min_{\mathcal{X}_s} \prod_{j=1}^{m_s} (1 - \boldsymbol{r}_{sj})^{x_{sj}}\right\}$$
+
+$$ = \left\{\arg \min_{\mathcal{X}_1} \left(\sum_{j=1}^{m_1} \alpha_{1j} x_{1j}\right), \ \cdots, \ \arg \min_{\mathcal{X}_s} \left(\sum_{j=1}^{m_s} \alpha_{sj} x_{sj}\right)\right\}$$
+where $\alpha_{ij} = \ln(1 - \boldsymbol{r}_{ij})$
+:::
+
+
+## Related Works
+::: {.callout-note title="Multi-Objective Genetic Algorithm Approach "}
+$$\arg \min_{\mathcal{X}} \left(\sum_{i=1}^{s}  \sum_{j=1}^{m_i} \omega_i \alpha_{ij} x_{ij}\right)$$
+subject to 
+$$\sum_{i=1}^{s} \omega_i = 1, \quad \quad
+\sum_{i=1}^{s} \sum_{j=1}^{m_i} \boldsymbol{c}_{ij} x_{ij} \leq C,$$
+$$\sum_{i=1}^{s} \sum_{j=1}^{m_i} \boldsymbol{w}_{ij} x_{ij} \leq W, \quad \quad \sum_{j=1}^{m_i} \alpha_{ij} x_{ij} < \ln(1 - R_i^{min}), \quad i = 1, 2, \ldots, s,$$
+and $x_{ij} \in \mathbb{Z}^+$
+:::
+
+
+
+# Proposed Architecture
+
+## Multi-agent based approach {auto-animate="true"}
+Our goal is to develop a decentralized agent based 	algorithm to solve the RAP
+
+:::{.callout-note title="Agent sub problem"}
+$$\arg \min_{\mathcal{X}} \sum_{j=1}^{m_i} \alpha_{ij} x_{ij}$$
+such that
+$$\sum_{j=1}^{m_i} c_{ij} x_{ij} \leq \widetilde{c}_i, \quad \quad
+\sum_{j=1}^{m_i} w_{ij} x_{ij} \leq \widetilde{w}_i,$$
+
+where $i=1,2,\ldots, s$, and $\widetilde{c}_i$ and $\widetilde{w}_i$ are subsystem-specific cost and weight constraints derived from the overall constraints $C$ and $W$:
+$\sum_{i=1}^{s} \widetilde{c}_i \leq C, \quad \quad
+\sum_{i=1}^{s} \widetilde{w}_i \leq W.$
+:::
+
+## Multi-Agent Systems {auto-animate="true"}
+
+:::{.callout-note title="Multi-Agent Systems"}
+- assume all agents are honest and deliver authenticated messages
+:::
+
+::: columns
+::: {.column width="50%"}
+![](./images/agent_based_app.gif){width=100% fig-align="center"}
+:::
+::: {.column width="50%"}
+![](./images/agent_sub.jpg){width=100% fig-align="center"}
+:::
+:::
+
+## Multi-Agent Systems {auto-animate="true"}
+
+:::{.callout-note title="Multi-Agent Systems"}
+- assume all agents are honest and deliver authenticated messages
+
+- each agent provides its lowest cost and weight among its component selections to the Centralized Broker Agent as
+$$\lfloor c_i^\star \rfloor = \min\{c_{i1}, c_{i2}, \ldots, c_{i{m_i}}\},$$
+$$\lfloor w_i^\star \rfloor = \min\{w_{i1}, w_{i2}, \ldots, w_{i{m_i}}\},$$
+for $( i = 1, 2, \ldots, s )$
+:::
+
+## Multi-Agent based Trading Approach
+
+:::{.callout-note title="Multi-Agent based Trading Approach"}
+- the Centralized Broker Agent (CBA)
+initiates the trading process. Once the CBA makes a decision,
+all agents accept it. The trading procedure involves a three-
+tier optimization process:
+
+1. Local Optimization for Permissible Performance Sets
+
+2. Group Trading Among Agents
+
+3. CBA Winning Agent Algorithm
+
+:::
+
+## Multi-Agent based Trading Approach
+
+:::{.callout-note title="1.Local Optimization for Permissible Performance Sets"}
+$$\min_{\mathcal{X}} \left\{\sum_{j=1}^{m_i} \alpha_{ij} x_{ij}\right\}$$ 
+such that $\sum_{j=1}^{m_i} x_{ij} c_{ij} \leq \widetilde{c}_i, \quad \quad
+\sum_{j=1}^{m_i} x_{ij} w_{ij} \leq \widetilde{w}_i,$
+
+
+- By varying $\widetilde{c}_i$ and $\widetilde{w}_i$, up to $C \times W$ linear integer programming problems are solved to determine all possible $x_{ij}$. Each solution provides $r_i$, $c_i$, and $w_i$ for the agent, forming the set $\Gamma_i$:
+$$\Gamma_i = \{ (r_l^{(i)}, c_l^{(i)}, w_l^{(i)}) \},$$
+where $r_l^{(i)} = 1 - \prod_{j=1}^{m_i} (1 - r_{ij})^{x_{ij}^{(l)}},  \quad
+c_l^{(i)} = \sum_{j=1}^{m_i} c_{ij} x_{ij}^{(l)}, \quad
+w_l^{(i)} = \sum_{j=1}^{m_i} w_{ij} x_{ij}^{(l)}.$
+
+
+- Note that if $c_{l}^{(i)} \geq c_{k}^{(i)}$ and $w_{l}^{(i)} \geq w_{k}^{(i)}$, then $r_{l}^{(i)} \geq r_{k}^{(i)}$, but the converse is not necessarily true.
+:::
+
+## Multi-Agent based Trading Approach
+
+:::{.callout-note title="2.Group Trading Among Agents"}
+- Once an agent's local belief is established, it must select a performance choice from its permissible performance set $\Gamma_i$.
+
+- To optimize the selection, a recursive formulation is used:
+$$R(\Gamma_{1:p}, C, W)= 
+\arg \max_{\mathcal{X}}\left\{R(\Gamma_p,c,w)R(\Gamma_{1:p-1}, C-c, C-w)\right\}$$
+subject to: $0 < c \leq C,$ and $0 < w \leq W,$, where
+$$R(\Gamma_p, c, w) = \begin{cases}
+r_l^{(p)} & \text{if } c = c_l^{(p)} \text{ and } w = w_l^{(p)}, \\
+r_l^{(p)} & \text{if } c_l^{(p)} \leq c < c_{l+1}^{(p)} \text{ and } w \geq w_l^{(p)}, \\
+r_l^{(p)} & \text{if } w_l^{(p)} \leq w < w_{l+1}^{(p)} \text{ and } c \geq c_l^{(p)}, \\
+0 & \text{otherwise}.
+\end{cases}$$
+:::
+
+## Multi-Agent based Trading Approach
+
+:::{.callout-note title="3.CBA Winning Agent Algorithm"}
+- Upon receiving all trading messages from agents,
+the CBA selects the agent group that can proceed
+with a trade. Agents then process the trade and
+update their performance indexes
+:::
+
+![](./images/market.jpg){width=100% fig-align="center"}
+
+
+
+
+# Simulation Results
+## Test Problem 1
+
+<div style="font-size: 20px;">
+| subsystem (i) || \multicolumn{3}{c|}{1} 1 ||| \multicolumn{3}{c|}{2} 2 ||| \multicolumn{3}{c|}{3} 3||| \multicolumn{3}{c}{4} 4|
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+|    | r  | c  | w  | r  | c  | w  | r  | c  | w  | r  | c  | w  |
+| 1  | 0.90 | 1  | 3  | 0.93 | 1  | 4  | 0.91 | 2  | 2  | 0.95 | 2  | 5  |
+| 2  | 0.95 | 2  | 8  | 0.94 | 1  | 10 | 0.93 | 1  | 9  | *    | *  | *  |
+| 3  | 0.85 | 2  | 7  | 0.90 | 3  | 5  | 0.87 | 1  | 6  | 0.92 | 4  | 4  |
+| 4  | 0.83 | 3  | 5  | 0.87 | 4  | 6  | 0.85 | 5  | 4  | *    | *  | *  |
+| 5  | 0.94 | 2  | 4  | 0.93 | 2  | 3  | 0.95 | 3  | 5  | *    | *  | *  |
+| 6  | 0.99 | 3  | 5  | 0.98 | 3  | 4  | 0.97 | 2  | 5  | 0.96 | 2  | 4  |
+| 7  | 0.91 | 4  | 7  | 0.92 | 4  | 8  | 0.94 | 5  | 9  | *    | *  | *  |
+| 8  | 0.81 | 3  | 4  | 0.90 | 5  | 7  | 0.91 | 6  | 6  | *    | *  | *  |
+| 9  | 0.97 | 2  | 8  | 0.99 | 3  | 9  | 0.96 | 4  | 7  | 0.91 | 3  | 8  |
+| 10 | 0.83 | 4  | 6  | 0.85 | 4  | 5  | 0.90 | 5  | 6  | *    | *  | *  |
+| 11 | 0.94 | 3  | 5  | 0.95 | 4  | 6  | 0.96 | 5  | 6  | *    | *  | *  |
+| 12 | 0.79 | 2  | 4  | 0.82 | 3  | 5  | 0.85 | 4  | 6  | 0.90 | 5  | 7  |
+| 13 | 0.98 | 2  | 5  | 0.99 | 3  | 5  | 0.97 | 2  | 6  | *    | *  | *  |
+| 14 | 0.90 | 4  | 6  | 0.92 | 4  | 7  | 0.95 | 5  | 6  | 0.99 | 6  | 9  |
+
+
+
+$*$ denotes no design alternative.
+
+## Problem Comparison
+![](./images/comp.jpg){width=100% fig-align="center"}
+
+
+
+# Conclusion
+
+## Conclusion & Future Work {.smaller}
+<br>
+
+:::{.callout-note title="Conclusion"}
+
+* We introduced a market-based multi-agent approach for solving RAP problems
+
+* The method features three levels of optimization, and we reduce computational complexity by constructing a permissible performance set for each subsystem
+
+* By using a trading group of two agents, we significantly lower the computation requirements, allowing for relatively fast resolution of RAP problems.
+
+:::
+
+:::{.callout-note title="Future Work"}
+
+* include evaluating the algorithm's computational complexity, robustness, and sensitivity
+
+* Exploring trading methods involving more than two agents and applying the algorithm to different RAP problems within cyber-resilient systems
+
+:::
+
+
+
+## THANK YOU
