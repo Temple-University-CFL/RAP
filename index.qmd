@@ -19,6 +19,7 @@ date: "2024-10-01"
 date-format: long
 format:
   clean-revealjs:
+  #pptx:
     theme: test.scss
     logo: images/temple.png
 #    css: logo.css
@@ -346,3 +347,17 @@ $*$ denotes no design alternative.
 
 
 ## THANK YOU
+
+::: columns
+
+::: {.column width="49%"}
+![Dr. Li Bai (li.bai@temple.edu)](./images/li_bai.png){width=150% fig-align="left"}
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="49%"}
+![Anway Bose (anway.bose@temple.edu)](./images/Anway_Bose.jpg){width=56% fig-align="left"}
+:::
+:::
